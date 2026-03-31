@@ -92,7 +92,7 @@ function EditProduct() {
       });
 
       await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `https://cartify-2wo9.onrender.com/api/products/${id}`,
         data,
         {
           headers: {
@@ -172,7 +172,7 @@ function EditProduct() {
                 src={
                   img instanceof File
                     ? URL.createObjectURL(img)
-                    : `http://localhost:5000${img}`
+                    : `https://cartify-2wo9.onrender.com${img}`
                 }
                 alt="preview"
                 className="image-preview"

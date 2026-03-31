@@ -5,7 +5,7 @@
 // ==============================
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://cartify-2wo9.onrender.com/api",
 });
 
 // ==============================

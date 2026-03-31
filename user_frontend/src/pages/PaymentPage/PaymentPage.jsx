@@ -58,7 +58,7 @@ function PaymentPage() {
             // 👉 CREATE ORDER
             // =========================
             const { data } = await axios.post(
-                "http://localhost:5000/api/orders",
+                "https://cartify-2wo9.onrender.com/api/orders",
                 {
                     shipping_address: address,
                     payment_method: paymentMethod,

@@ -14,7 +14,7 @@ function MyOrdersPage() {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/orders/my-orders",
+        "https://cartify-2wo9.onrender.com/api/orders/my-orders",
         {
           headers: {
             Authorization: `Bearer ${token}`,

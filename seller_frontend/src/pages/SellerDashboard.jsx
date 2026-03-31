@@ -27,7 +27,7 @@ function SellerDashboard() {
   const fetchStats = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/seller/stats",
+        "https://cartify-2wo9.onrender.com/api/seller/stats",
         {
           headers: {
             Authorization: `Bearer ${token}`,

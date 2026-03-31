@@ -13,7 +13,7 @@ function SellerOrdersPage() {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/seller/orders",
+        "https://cartify-2wo9.onrender.com/api/seller/orders",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ function SellerOrdersPage() {
   const updateStatus = async (orderId, itemId, status) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/seller/orders/${orderId}/items/${itemId}`,
+        `https://cartify-2wo9.onrender.com/api/seller/orders/${orderId}/items/${itemId}`,
         { status },
         {
           headers: {

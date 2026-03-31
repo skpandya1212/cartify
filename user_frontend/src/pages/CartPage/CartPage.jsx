@@ -16,7 +16,7 @@ function CartPage() {
   // =========================
   const fetchCart = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/cart", {
+      const { data } = await axios.get("https://cartify-2wo9.onrender.com/api/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ function CartPage() {
   // =========================
   const removeFromCart = async (productId) => {
     try {
-      await axios.delete("http://localhost:5000/api/cart/remove", {
+      await axios.delete("https://cartify-2wo9.onrender.com/api/cart/remove", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +60,7 @@ function CartPage() {
 
     try {
       await axios.put(
-        "http://localhost:5000/api/cart/update",
+        "https://cartify-2wo9.onrender.com/api/cart/update",
         {
           product_id: productId,
           quantity: qty,
@@ -114,7 +114,7 @@ function CartPage() {
                   <img
                     src={
                       product.images?.[0]
-                        ? `http://localhost:5000${product.images[0]}`
+                        ? `https://cartify-2wo9.onrender.com${product.images[0]}`
                         : "/placeholder.png"
                     }
                     alt={product.name}

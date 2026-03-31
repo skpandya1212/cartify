@@ -21,7 +21,7 @@ function UserProfile() {
   const fetchProfile = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/auth/profile",
+        "https://cartify-2wo9.onrender.com/api/auth/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ function UserProfile() {
 
     try {
       await axios.put(
-        "http://localhost:5000/api/auth/profile",
+        "https://cartify-2wo9.onrender.com/api/auth/profile",
         user,
         {
           headers: {
