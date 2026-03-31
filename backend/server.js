@@ -18,7 +18,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
-  "https://cartify-nine-chi.vercel.app"
+  "https://cartify-nine-chi.vercel.app",
+  "https://cartify-gu4h.vercel.app"
 ];
 
 app.use(cors({
