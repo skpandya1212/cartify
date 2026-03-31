@@ -46,9 +46,7 @@ router.post("/logout", authMiddleware, (req, res) => {
 });
 
 
-  router.get("/seller-profile", authMiddleware, getSellerProfile);
 
-  router.put("/seller-profile", authMiddleware, updateSellerProfile);
 
 
 // Reset Password

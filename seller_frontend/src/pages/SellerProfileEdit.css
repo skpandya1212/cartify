@@ -1,0 +1,162 @@
+/* =========================
+   CONTAINER
+========================= */
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  padding: 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+.profile-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   HEADING
+========================= */
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 22px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* =========================
+   FORM
+========================= */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.profile-form input,
+.profile-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  background: #fafafa;
+  transition: all 0.25s ease;
+}
+
+/* Focus Effect */
+.profile-form input:focus,
+.profile-form textarea:focus {
+  border-color: #4a90e2;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* =========================
+   TEXTAREA
+========================= */
+.profile-form textarea {
+  min-height: 90px;
+  resize: none;
+}
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+.profile-preview {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+  display: block;
+  border: 3px solid #eee;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.profile-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.profile-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Disabled */
+.profile-form button:disabled {
+  background: #b0b0b0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 22px;
+  }
+
+  .profile-card h2 {
+    font-size: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 12px;
+  }
+
+  .profile-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .profile-form input,
+  .profile-form textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .profile-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .profile-preview {
+    width: 75px;
+    height: 75px;
+  }
+}

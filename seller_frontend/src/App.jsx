@@ -13,6 +13,7 @@ import EditProduct from "./pages/EditProduct";
 import SellerProfile from "./pages/SellerProfile";
 import ForgotPassword from "./components/ForgotPassword";
 import SellerOrdersPage from "./pages/SellerOrdersPage";
+import SellerProfileEdit from "./pages/SellerProfileEdit";
 
 function App(){
   return(
@@ -52,6 +53,7 @@ function App(){
            <Route path="profile" element={<SellerProfile />} />
           {/* <Route path="profile" element={<Profile />} /> */}
           <Route path="orders" element={<SellerOrdersPage />} />
+          <Route path="seller/profile/edit" element={<SellerProfileEdit />} />  
 
         </Route>
 

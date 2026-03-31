@@ -40,4 +40,10 @@ router.get(
   getSellerStats
 );
 
+
+router.get("/profile", authMiddleware, getSellerProfile);
+router.put("/profile", authMiddleware, updateSellerProfile);
+
+
+
 export default router;

@@ -60,7 +60,7 @@ function SellerProfile() {
 
           <button
             className="profile-edit-btn"
-            onClick={() => navigate("/seller/profile/edit")}
+            onClick={() => navigate("/dashboard/seller/profile/edit")}
           >
             Edit Profile
           </button>
