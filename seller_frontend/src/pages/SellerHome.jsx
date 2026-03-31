@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SellerHome.css";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+
 
 function SellerHome() {
   const [orders, setOrders] = useState([]);
@@ -134,16 +135,24 @@ function SellerHome() {
       <div className="chart-container">
         <h3>Order Status</h3>
 
-        <PieChart width={350} height={300}>
-          <Pie data={chartData} dataKey="value" outerRadius={100}>
-            {chartData.map((entry, index) => (
-              <Cell key={index} />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
+        <div className="chart-wrapper">
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={chartData}
+                dataKey="value"
+                outerRadius={100}
+                innerRadius={50}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={index} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-
       {/* ORDERS */}
       <div className="orders-container">
         <h3>Recent Orders</h3>
