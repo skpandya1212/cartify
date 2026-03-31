@@ -1,56 +1,81 @@
-  import express from "express";
-  import dotenv from "dotenv";
-  import connectDB from "./config/db.js";
-  import authRoutes from "./routes/auth.routes.js";
-  import productRoutes from "./routes/product.routes.js";
-  import cartRoutes from "./routes/cart.routes.js";
-  import orderRoutes from "./routes/order.routes.js";
-  import adminRoutes from "./routes/admin.routes.js";
-  import sellerRoutes from "./routes/seller.routes.js";
-  import cors from 'cors';
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
 
-  dotenv.config();
+import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
+import orderRoutes from "./routes/order.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import sellerRoutes from "./routes/seller.routes.js";
 
-  // Connect Database
-  connectDB();
+import cors from "cors";
 
-  const app = express();
-  const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://cartify-nine-chi.vercel.app",
-    "https://cartify-gu4h.vercel.app"
-  ];
+dotenv.config();
 
-  app.use(cors({
+// ✅ Connect Database
+connectDB();
+
+const app = express();
+
+// ✅ Allowed Origins
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://cartify-nine-chi.vercel.app",
+  "https://cartify-gu4h.vercel.app"
+];
+
+// ✅ CORS CONFIG (FIXED)
+app.use(
+  cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+      // ✅ allow requests with no origin (mobile apps, postman)
+      if (!origin) return callback(null, true);
+
+      // ✅ allow localhost (any port)
+      if (origin.startsWith("http://localhost")) {
+        return callback(null, true);
       }
+
+      // ✅ allow production domains
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // ❌ block others
+      return callback(null, false);
     },
-    credentials: true
-  }));
+    credentials: true,
+  })
+);
 
-  app.options("*", cors());
-  app.use(express.json());
+// ✅ VERY IMPORTANT: Handle preflight requests
+app.options("*", cors());
 
-  app.get("/", (req, res) => {
-    res.json({ message: " E-Commerce API Running" });
-  });
+// ✅ Middleware
+app.use(express.json());
 
-  app.use("/uploads", express.static("uploads"));
-  app.use("/api/auth", authRoutes);
-  app.use("/api/products", productRoutes);
-  app.use("/api/cart", cartRoutes);
-  app.use("/api/orders", orderRoutes);
-  app.use("/api/admin", adminRoutes);
-  app.use("/api/seller", sellerRoutes);
+// ✅ Test route
+app.get("/", (req, res) => {
+  res.json({ message: "E-Commerce API Running 🚀" });
+});
 
-  const PORT = process.env.PORT || 5000;
+// ✅ Static folder
+app.use("/uploads", express.static("uploads"));
 
-  app.listen(PORT, () => {
-    console.log(` Server running on port ${PORT}`);
-  });
+// ✅ Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/seller", sellerRoutes);
+
+// ✅ Start server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

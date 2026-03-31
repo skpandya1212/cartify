@@ -163,3 +163,27 @@ export const getSellerStats = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getSellerProfile = async (req, res) => {
+  try {
+    const seller = req.user; // from authMiddleware
+    res.json(seller);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const updateSellerProfile = async (req, res) => {
+  try {
+    const seller = req.user;
+
+    seller.name = req.body.name || seller.name;
+    seller.email = req.body.email || seller.email;
+
+    const updatedSeller = await seller.save();
+
+    res.json(updatedSeller);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

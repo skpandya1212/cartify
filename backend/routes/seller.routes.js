@@ -3,7 +3,10 @@ import {
   getSellerOrders,
   updateSellerOrderStatus,
   getSellerStats,
+  getSellerProfile,
+  updateSellerProfile,
 } from "../controller/seller.controller.js";
+
 
 import authMiddleware from "../middleware/auth.middleware.js";
 import roleMiddleware from "../middleware/role.middleware.js";
