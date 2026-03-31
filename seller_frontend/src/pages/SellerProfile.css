@@ -1,0 +1,164 @@
+/* SellerProfile.css */
+
+.profile-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2f7, #dbe6f6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Card */
+.profile-card {
+  width: 900px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+}
+
+
+/* Header */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e6e9ef;
+  padding-bottom: 15px;
+}
+
+.profile-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+
+/* Edit Button */
+.profile-edit-btn {
+  margin-left: 50%;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #3b82f6);
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bolder;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.profile-edit-btn:hover {
+  background: linear-gradient(135deg, #0f172a, #1e293b, #3b82f6);
+  transform: translateY(-1px);
+}
+
+.profile-edit-btn:active {
+  transform: scale(0.96);
+}
+
+
+/* Body Layout */
+.profile-body {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+
+/* Left Side */
+.profile-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Profile Image */
+.profile-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    0 0 0 4px #e0e7ff;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+
+/* Right Side */
+.profile-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* Info Box */
+.profile-info {
+  background: #f9fafc;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.25s ease;
+}
+
+.profile-info:hover {
+  background: #f1f5ff;
+  border-color: #c7d2fe;
+}
+
+.profile-info span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .profile-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .profile-body {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-right {
+    width: 100%;
+  }
+
+}

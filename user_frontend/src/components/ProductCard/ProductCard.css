@@ -1,0 +1,141 @@
+.product-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* ✅ FIX SAME HEIGHT */
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE FIX (VERY IMPORTANT) */
+.product-img {
+  width: 100%;
+  height: 220px;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.product-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* ✅ FIX IMAGE DISTORTION */
+  transition: 0.3s;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* DETAILS */
+.product-details {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* ✅ PUSH BUTTON DOWN */
+}
+
+/* CATEGORY */
+.category {
+  font-size: 11px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+/* NAME */
+.product-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 5px 0;
+  min-height: 40px; /* ✅ FIX ALIGNMENT */
+}
+
+/* RATING */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.filled {
+  color: #f5b50a;
+}
+
+.review-count {
+  font-size: 12px;
+  color: #777;
+}
+
+/* DESCRIPTION */
+.description {
+  font-size: 13px;
+  color: #666;
+  margin: 6px 0;
+  min-height: 40px;
+}
+
+/* STOCK */
+.stock {
+  font-size: 12px;
+  color: green;
+}
+
+.out-stock {
+  font-size: 12px;
+  color: red;
+}
+
+/* BOTTOM FIX */
+.bottom {
+  margin-top: auto; /* ✅ PUSH TO BOTTOM */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* PRICE */
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+/* BUTTON */
+.cart-btn {
+  border: none;
+  background: #6366f1;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background: #4f46e5;
+}
+
+.cart-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

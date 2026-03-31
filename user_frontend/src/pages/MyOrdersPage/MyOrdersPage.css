@@ -1,0 +1,133 @@
+/* PAGE */
+.orders-page {
+  padding: 30px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.orders-page h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #222;
+}
+
+/* ORDER CARD */
+.order-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.order-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.order-header p {
+  font-size: 14px;
+  color: #555;
+}
+
+.order-header strong {
+  color: #111;
+}
+
+/* ITEMS */
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* SINGLE ITEM */
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+/* DETAILS */
+.details h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* STATUS BADGES */
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* STATUS COLORS */
+.status.pending {
+  background: #fff4e5;
+  color: #ff9800;
+}
+
+.status.approved {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.status.shipped {
+  background: #ede7f6;
+  color: #673ab7;
+}
+
+.status.delivered {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.status.rejected {
+  background: #fdecea;
+  color: #f44336;
+}
+
+/* EMPTY STATE */
+.orders-page p {
+  font-size: 16px;
+  color: #777;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

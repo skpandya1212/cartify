@@ -1,0 +1,56 @@
+.offer-banner {
+  margin: 40px 20px;
+  padding: 60px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow effect */
+.offer-banner::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  top: -50%;
+  left: -50%;
+  transform: rotate(25deg);
+}
+
+/* Content */
+.offer-content {
+  position: relative;
+  z-index: 2;
+}
+
+.offer-content h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.offer-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.offer-content button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff7a18;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.offer-content button:hover {
+  background: #222;
+  color: white;
+}

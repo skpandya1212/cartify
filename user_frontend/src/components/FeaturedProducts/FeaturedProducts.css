@@ -1,0 +1,113 @@
+.featured-products{
+
+  padding:70px 80px;
+
+  background:#f9fafc;
+
+}
+
+.section-header{
+
+  text-align:center;
+
+  margin-bottom:40px;
+
+}
+
+.section-header h2{
+
+  font-size:32px;
+
+  font-weight:600;
+
+}
+
+.section-header p{
+
+  color:#666;
+
+  margin-top:5px;
+
+}
+
+/* PRODUCT GRID */
+
+.product-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+  gap:25px;
+
+}
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= *
+
+/* 💻 Laptop (992px - 1199px) */
+@media (max-width: 1199px) {
+  .featured-products {
+    padding: 60px 60px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 📱 Tablet (768px - 991px) */
+@media (max-width: 991px) {
+  .featured-products {
+    padding: 50px 40px;
+  }
+
+  .section-header h2 {
+    font-size: 26px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* 📱 Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .featured-products {
+    padding: 40px 20px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .view-all-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* 📱 Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+  .featured-products {
+    padding: 30px 15px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .product-grid {
+    gap: 15px;
+  }
+}

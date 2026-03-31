@@ -1,0 +1,509 @@
+/* Seller_Register.css - Cartify Theme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.seller-register-container {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 40%, #8b5cf6 70%, #ec4899 100%);
+  padding: 20px;
+  position: relative;
+}
+
+.seller-register-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.register-wrapper {
+  display: flex;
+  max-width: 1100px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+/* Left Side - Brand Section */
+.register-brand-section {
+  flex: 1;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #3b82f6);
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-brand-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.brand-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  font-size: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-tagline {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.brand-content h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.brand-description {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  max-width: 320px;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.benefit-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.benefit-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.benefit-item p {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* Right Side - Form Section */
+.register-form-section {
+  flex: 1;
+  padding: 50px 45px;
+  background: white;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: #718096;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+label::after {
+  content: '*';
+  color: #fc8181;
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  background: #f7fafc;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: #a0aec0;
+  font-size: 13px;
+}
+
+input.error, textarea.error {
+  border-color: #fc8181;
+  background: #fff5f5;
+}
+
+.error-message {
+  display: block;
+  font-size: 12px;
+  color: #e53e3e;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Checkbox/Remember Me Style */
+.terms-group {
+  margin: 25px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #667eea;
+}
+
+.checkbox-label a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.checkbox-label a:hover {
+  text-decoration: underline;
+}
+
+/* Form Footer */
+.form-footer {
+  margin-top: 30px;
+}
+
+button {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+button.loading {
+  position: relative;
+  color: transparent;
+}
+
+button.loading::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: -12px;
+  border: 3px solid white;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #718096;
+}
+
+.login-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Forgot Password Link */
+.forgot-link {
+  text-align: right;
+  margin-top: 8px;
+}
+
+.forgot-link a {
+  color: #667eea;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-link a:hover {
+  text-decoration: underline;
+}
+
+/* Message Popup */
+.message-popup {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.message-popup.success {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+}
+
+.message-popup.error {
+  background: linear-gradient(135deg, #f56565, #e53e3e);
+  color: white;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .register-wrapper {
+    flex-direction: column;
+    max-width: 500px;
+  }
+  
+  .register-brand-section {
+    padding: 40px 30px;
+  }
+  
+  .brand-content h1 {
+    font-size: 30px;
+  }
+  
+  .benefits-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .benefit-item {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 576px) {
+  .register-form-section {
+    padding: 35px 25px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .benefits-list {
+    flex-direction: column;
+  }
+  
+  .benefit-item {
+    flex: 1 1 100%;
+  }
+  
+  .brand-content h1 {
+    font-size: 26px;
+  }
+  
+  .form-header h2 {
+    font-size: 24px;
+  }
+  
+  .message-popup {
+    left: 20px;
+    right: 20px;
+    text-align: center;
+  }
+  
+  .checkbox-label {
+    font-size: 13px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 380px) {
+  .register-form-section {
+    padding: 25px 20px;
+  }
+  
+  button {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}

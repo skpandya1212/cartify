@@ -1,0 +1,20 @@
+.all-products {
+  padding: 40px 20px;
+  background: #f9fafb;
+  min-height: 100vh;
+}
+
+/* Title */
+.all-products h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* GRID FIX (IMPORTANT) */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+  align-items: stretch;
+}

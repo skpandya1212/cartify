@@ -1,0 +1,14 @@
+.star-rating {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.star-rating svg {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.star-rating svg:hover {
+  transform: scale(1.2);
+}

@@ -1,0 +1,165 @@
+/* MAIN */
+.seller-home {
+  padding: 20px;
+}
+
+/* HEADER */
+.home-header {
+  margin-bottom: 20px;
+}
+
+.home-header h2 {
+  margin-bottom: 5px;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* CARD */
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+/* COLORS */
+.stat-card.total { border-left: 5px solid #3b82f6; }
+.stat-card.pending { border-left: 5px solid orange; }
+.stat-card.shipped { border-left: 5px solid #6366f1; }
+.stat-card.delivered { border-left: 5px solid green; }
+
+.stat-card span {
+  display: block;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+/* ORDERS */
+.orders-container h3 {
+  margin-bottom: 10px;
+}
+
+/* ORDER CARD */
+.order-card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.order-id {
+  font-weight: bold;
+}
+
+.customer {
+  font-size: 14px;
+  color: #666;
+}
+
+.date {
+  font-size: 13px;
+  color: #999;
+}
+
+/* ITEM */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.product {
+  font-weight: bold;
+}
+
+.details {
+  font-size: 13px;
+  color: #666;
+}
+
+/* STATUS */
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status.pending { color: orange; }
+.status.shipped { color: #6366f1; }
+.status.delivered { color: green; }
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+/* ADDITION */
+
+/* REVENUE CARD */
+.stat-card.revenue {
+  border-left: 5px solid #10b981;
+}
+
+/* CHART */
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* ITEM ACTIONS */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* BUTTON */
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* BUTTON COLORS */
+.btn.ship {
+  background: #6366f1;
+  color: white;
+}
+
+.btn.deliver {
+  background: green;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}

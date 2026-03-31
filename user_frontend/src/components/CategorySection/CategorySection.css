@@ -1,0 +1,102 @@
+.category-section{
+
+  padding:40px 80px;
+
+  background:#ffffff;
+
+  border-bottom:1px solid #eee;
+
+}
+
+.category-section h2{
+
+  font-size:24px;
+
+  margin-bottom:20px;
+
+  font-weight:600;
+
+}
+
+.category-section h2 span
+{
+  color: #6366f1;
+}
+
+/* CATEGORY LIST */
+
+.category-list{
+
+  display:flex;
+
+  gap:15px;
+
+  overflow-x:auto;
+
+  padding-bottom:10px;
+
+}
+
+/* BUTTON STYLE */
+
+.category-btn{
+
+  border:2px solid;
+
+  box-shadow:5px 5px 1px 1px rgba(0, 0, 0, 0.765);
+
+  background:#f4f4f4;
+
+  padding:10px 20px;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+  font-weight:bolder;
+
+  white-space:nowrap;
+
+  transition:0.3s;
+
+  color: #6366f1;
+
+  margin-left: 5px;
+
+}
+
+/* HOVER EFFECT */
+
+.category-btn:hover{
+
+  background:#6366f1;
+
+  color:white;
+
+  border:1px solid;
+
+  box-shadow:-5px -5px rgba(0, 0, 0, 0.765);
+
+}
+
+/* SCROLLBAR HIDE */
+
+.category-list::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.category-section{
+
+  padding:30px 20px;
+
+}
+
+}
