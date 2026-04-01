@@ -11,7 +11,15 @@ import sellerRoutes from "./routes/seller.routes.js";
 
 import cors from "cors";
 
+// ✅ NEW (IMPORTANT for static path fix)
+import path from "path";
+import { fileURLToPath } from "url";
+
 dotenv.config();
+
+// ✅ Fix __dirname (ES Modules)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // ✅ Connect Database
 connectDB();
@@ -27,31 +35,27 @@ const allowedOrigins = [
   "https://cartify-gu4h.vercel.app",
 ];
 
-// ✅ CORS CONFIG (FINAL FIX)
+// ✅ CORS CONFIG
 app.use(
   cors({
     origin: function (origin, callback) {
-      // ✅ Allow requests with no origin (Postman, mobile apps)
       if (!origin) return callback(null, true);
 
-      // ✅ Allow localhost (any port)
       if (origin.startsWith("http://localhost")) {
         return callback(null, true);
       }
 
-      // ✅ Allow production domains
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      // ❌ Block others
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
 );
 
-// ❌ ❌ REMOVE THIS LINE (IMPORTANT)
+// ❌ REMOVED (DO NOT ADD AGAIN)
 // app.options("/*", cors());
 
 // ✅ Middleware
@@ -62,8 +66,8 @@ app.get("/", (req, res) => {
   res.json({ message: "E-Commerce API Running 🚀" });
 });
 
-// ✅ Static folder
-app.use("/uploads", express.static("uploads"));
+// ✅ 🔥 FIXED STATIC FOLDER (IMPORTANT CHANGE)
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
@@ -73,12 +77,12 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/seller", sellerRoutes);
 
-// ✅ 404 Handler (BEST PRACTICE)
+// ✅ 404 Handler
 app.use((req, res) => {
   res.status(404).json({ message: "Route Not Found" });
 });
 
-// ✅ Error Handler (VERY IMPORTANT)
+// ✅ Error Handler
 app.use((err, req, res, next) => {
   console.error(err.message);
   res.status(500).json({
