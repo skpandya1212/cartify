@@ -146,7 +146,7 @@ function ProductsList() {
                     <img
                       src={
                         images[currentIndex]
-                          ? `${BASE_URL}${images[currentIndex]}`
+                          ? `${BASE_URL}/${images[currentIndex]}`
                           : "https://via.placeholder.com/400x300?text=No+Image"
                       }
                       alt={product.name}
