@@ -24,35 +24,35 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://cartify-nine-chi.vercel.app",
-  "https://cartify-gu4h.vercel.app"
+  "https://cartify-gu4h.vercel.app",
 ];
 
-// ✅ CORS CONFIG (FIXED)
+// ✅ CORS CONFIG (FINAL FIX)
 app.use(
   cors({
     origin: function (origin, callback) {
-      // ✅ allow requests with no origin (mobile apps, postman)
+      // ✅ Allow requests with no origin (Postman, mobile apps)
       if (!origin) return callback(null, true);
 
-      // ✅ allow localhost (any port)
+      // ✅ Allow localhost (any port)
       if (origin.startsWith("http://localhost")) {
         return callback(null, true);
       }
 
-      // ✅ allow production domains
+      // ✅ Allow production domains
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      // ❌ block others
-      return callback(null, false);
+      // ❌ Block others
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
 );
 
-// ✅ VERY IMPORTANT: Handle preflight requests
-app.options("*", cors());
+// ❌ ❌ REMOVE THIS LINE (IMPORTANT)
+// app.options("/*", cors());
 
 // ✅ Middleware
 app.use(express.json());
@@ -73,9 +73,22 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/seller", sellerRoutes);
 
+// ✅ 404 Handler (BEST PRACTICE)
+app.use((req, res) => {
+  res.status(404).json({ message: "Route Not Found" });
+});
+
+// ✅ Error Handler (VERY IMPORTANT)
+app.use((err, req, res, next) => {
+  console.error(err.message);
+  res.status(500).json({
+    message: err.message || "Server Error",
+  });
+});
+
 // ✅ Start server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
