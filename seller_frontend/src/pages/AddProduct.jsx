@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddProduct.css";
 import { addProduct } from "../services/api.js";
 
 function AddProduct() {
-
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -16,18 +15,26 @@ function AddProduct() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [newCategory, setNewCategory] = useState("");
+  const [previewUrls, setPreviewUrls] = useState([]);
 
-  // Categories
   const categories = [
     "Shoes",
     "Electronics",
     "Clothing",
     "Watches",
     "Bags",
-    "Sports"
+    "Sports",
   ];
 
-  // Handle text input
+  useEffect(() => {
+    const urls = formData.images.map((img) => URL.createObjectURL(img));
+    setPreviewUrls(urls);
+
+    return () => {
+      urls.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [formData.images]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,7 +42,6 @@ function AddProduct() {
     });
   };
 
-  // Handle image upload
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
 
@@ -45,9 +51,21 @@ function AddProduct() {
     });
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const selectedCategory =
+      formData.category === "custom" ? newCategory.trim() : formData.category;
+
+    if (!selectedCategory) {
+      setMessage("Please select or enter a category");
+      return;
+    }
+
+    if (formData.images.length === 0) {
+      setMessage("Please upload at least one product image");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -55,31 +73,20 @@ function AddProduct() {
 
       const formDataToSend = new FormData();
 
-      // Normal fields
       formDataToSend.append("name", formData.name);
       formDataToSend.append("price", formData.price);
       formDataToSend.append("description", formData.description);
       formDataToSend.append("stock", formData.stock);
+      formDataToSend.append("category", selectedCategory);
 
-      // Category (custom support)
-      formDataToSend.append(
-        "category",
-        formData.category === "custom"
-          ? newCategory
-          : formData.category
-      );
-
-      // Images
       formData.images.forEach((file) => {
         formDataToSend.append("images", file);
       });
 
-      // API Call
       await addProduct(formDataToSend);
 
-      setMessage("✅ Product added successfully");
+      setMessage("Product added successfully");
 
-      // Reset form
       setFormData({
         name: "",
         description: "",
@@ -90,10 +97,9 @@ function AddProduct() {
       });
 
       setNewCategory("");
-
     } catch (error) {
       console.error(error);
-      setMessage("❌ Failed to add product");
+      setMessage(error.response?.data?.message || "Failed to add product");
     } finally {
       setLoading(false);
     }
@@ -102,12 +108,9 @@ function AddProduct() {
   return (
     <div className="add-product-container">
       <div className="add-product-card">
-
         <h2>Add New Product</h2>
 
         <form onSubmit={handleSubmit}>
-
-          {/* Name */}
           <div className="form-group">
             <label>Product Name</label>
             <input
@@ -120,7 +123,6 @@ function AddProduct() {
             />
           </div>
 
-          {/* Description */}
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -131,9 +133,7 @@ function AddProduct() {
             />
           </div>
 
-          {/* Price + Stock */}
           <div className="form-row">
-
             <div className="form-group">
               <label>Price (₹)</label>
               <input
@@ -157,10 +157,8 @@ function AddProduct() {
                 required
               />
             </div>
-
           </div>
 
-          {/* Category */}
           <div className="form-group">
             <label>Category</label>
 
@@ -172,18 +170,16 @@ function AddProduct() {
             >
               <option value="">Select Category</option>
 
-              {categories.map((cat, index) => (
-                <option key={index} value={cat}>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
                   {cat}
                 </option>
               ))}
 
-              <option value="custom">➕ Add New Category</option>
-
+              <option value="custom">Add New Category</option>
             </select>
           </div>
 
-          {/* Custom Category */}
           {formData.category === "custom" && (
             <div className="form-group">
               <label>New Category</label>
@@ -197,44 +193,35 @@ function AddProduct() {
             </div>
           )}
 
-          {/* Images */}
           <div className="form-group">
             <label>Product Images</label>
 
             <input
               type="file"
               multiple
+              accept="image/*"
               onChange={handleImageChange}
             />
 
-            {/* Preview */}
             <div className="preview">
-              {formData.images.length > 0 &&
-                formData.images.map((img, index) => (
-                  <img
-                    key={index}
-                    src={URL.createObjectURL(img)}
-                    alt="preview"
-                    width="70"
-                    style={{ marginRight: "10px", marginTop: "10px" }}
-                  />
-                ))}
+              {previewUrls.map((url, index) => (
+                <img
+                  key={url}
+                  src={url}
+                  alt={`preview-${index + 1}`}
+                  width="70"
+                  style={{ marginRight: "10px", marginTop: "10px" }}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="submit-btn"
-            disabled={loading}
-          >
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? "Adding Product..." : "Add Product"}
           </button>
-
         </form>
 
         {message && <p className="message">{message}</p>}
-
       </div>
     </div>
   );
