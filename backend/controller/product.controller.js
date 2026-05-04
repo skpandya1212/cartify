@@ -3,7 +3,11 @@ import Product from "../models/product.model.js";
 // Add Product (Seller)
 export const addProduct = async (req, res) => {
   try {
-    const imagePaths = req.files ? req.files.map((file) => file.path) : [];
+
+    // Get uploaded image paths
+    const imagePaths = req.files.map(
+      (file) => `/uploads/${file.filename}`
+    );
 
     const product = await Product.create({
       ...req.body,
@@ -12,40 +16,38 @@ export const addProduct = async (req, res) => {
     });
 
     res.status(201).json(product);
+    
   } catch (error) {
-    console.error("Add product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
-
-// Get Single Product
 export const getSingleProduct = async (req, res) => {
+
   try {
-    const product = await Product.findById(req.params.id).populate(
-      "seller_id",
-      "name email"
-    );
+    const product = await Product.findById(req.params.id)
+      .populate("seller_id", "name email");
 
     if (!product) {
       return res.status(404).json({
-        message: "Product not found",
+        message: "Product not found"
       });
     }
 
     res.json(product);
+
   } catch (error) {
-    console.error("Get single product error:", error);
     res.status(500).json({
-      message: error.message,
+      message: error.message
     });
   }
+
 };
 
-// Get Products
 export const getProducts = async (req, res) => {
   try {
-    const query = {};
+    let query = {};
 
+    // 🔍 Search
     if (req.query.keyword) {
       query.name = {
         $regex: req.query.keyword,
@@ -53,20 +55,23 @@ export const getProducts = async (req, res) => {
       };
     }
 
+    // 🗂 Category
     if (req.query.category) {
       query.category = req.query.category;
     }
 
+    // 🔃 Sorting
     let sortOption = {};
-
     if (req.query.sort === "newest") {
       sortOption = { createdAt: -1 };
     }
 
+    // 🚀 MAIN QUERY
     let productsQuery = Product.find(query)
       .populate("seller_id", "name email")
       .sort(sortOption);
 
+    // ✅ LIMIT (THIS IS MISSING IN YOUR CODE)
     if (req.query.limit) {
       productsQuery = productsQuery.limit(Number(req.query.limit));
     }
@@ -74,8 +79,8 @@ export const getProducts = async (req, res) => {
     const products = await productsQuery;
 
     res.json(products);
+
   } catch (error) {
-    console.error("Get products error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -89,10 +94,13 @@ export const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    // If new images uploaded
     let imagePaths = product.images;
 
     if (req.files && req.files.length > 0) {
-      imagePaths = req.files.map((file) => file.path);
+      imagePaths = req.files.map(
+        (file) => `/uploads/${file.filename}`
+      );
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -101,12 +109,12 @@ export const updateProduct = async (req, res) => {
         ...req.body,
         images: imagePaths,
       },
-      { new: true, runValidators: true }
+      { new: true }
     );
 
     res.json(updatedProduct);
+
   } catch (error) {
-    console.error("Update product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -114,54 +122,60 @@ export const updateProduct = async (req, res) => {
 // Delete Product
 export const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
-
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
-    }
+    await Product.findByIdAndDelete(req.params.id);
 
     res.json({
       message: "Product deleted successfully",
     });
+
   } catch (error) {
-    console.error("Delete product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
 
 // Get Logged-in Seller Products
 export const getSellerProducts = async (req, res) => {
+
   try {
+
     const products = await Product.find({
-      seller_id: req.user.id,
+      seller_id: req.user.id
     }).populate("seller_id", "name email");
 
     res.json(products);
+
   } catch (error) {
-    console.error("Get seller products error:", error);
+
     res.status(500).json({
-      message: error.message,
+      message: error.message
     });
+
   }
+
 };
 
-// Get Categories
+
+
 export const getCategories = async (req, res) => {
   try {
+
     const categories = await Product.distinct("category");
 
     res.json(categories);
+
   } catch (error) {
-    console.error("Get categories error:", error);
+
     res.status(500).json({
-      message: error.message,
+      message: error.message
     });
+
   }
 };
 
-// Add Review
+
 export const addReview = async (req, res) => {
   try {
+
     const { rating, comment } = req.body;
 
     const product = await Product.findById(req.params.id);
@@ -170,6 +184,7 @@ export const addReview = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    // Check if user already reviewed
     const alreadyReviewed = product.reviews.find(
       (r) => r.user.toString() === req.user.id
     );
@@ -198,8 +213,14 @@ export const addReview = async (req, res) => {
     await product.save({ validateBeforeSave: false });
 
     res.status(201).json({ message: "Review added" });
+
   } catch (error) {
-    console.error("Add review error:", error);
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
+
+
+
