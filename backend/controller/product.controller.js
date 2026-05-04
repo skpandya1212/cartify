@@ -13,6 +13,7 @@ export const addProduct = async (req, res) => {
 
     res.status(201).json(product);
   } catch (error) {
+    console.error("Add product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -33,6 +34,7 @@ export const getSingleProduct = async (req, res) => {
 
     res.json(product);
   } catch (error) {
+    console.error("Get single product error:", error);
     res.status(500).json({
       message: error.message,
     });
@@ -42,7 +44,7 @@ export const getSingleProduct = async (req, res) => {
 // Get Products
 export const getProducts = async (req, res) => {
   try {
-    let query = {};
+    const query = {};
 
     if (req.query.keyword) {
       query.name = {
@@ -73,6 +75,7 @@ export const getProducts = async (req, res) => {
 
     res.json(products);
   } catch (error) {
+    console.error("Get products error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -98,11 +101,12 @@ export const updateProduct = async (req, res) => {
         ...req.body,
         images: imagePaths,
       },
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     res.json(updatedProduct);
   } catch (error) {
+    console.error("Update product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -110,12 +114,17 @@ export const updateProduct = async (req, res) => {
 // Delete Product
 export const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
+    const product = await Product.findByIdAndDelete(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
     res.json({
       message: "Product deleted successfully",
     });
   } catch (error) {
+    console.error("Delete product error:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -129,6 +138,7 @@ export const getSellerProducts = async (req, res) => {
 
     res.json(products);
   } catch (error) {
+    console.error("Get seller products error:", error);
     res.status(500).json({
       message: error.message,
     });
@@ -142,6 +152,7 @@ export const getCategories = async (req, res) => {
 
     res.json(categories);
   } catch (error) {
+    console.error("Get categories error:", error);
     res.status(500).json({
       message: error.message,
     });
@@ -188,6 +199,7 @@ export const addReview = async (req, res) => {
 
     res.status(201).json({ message: "Review added" });
   } catch (error) {
+    console.error("Add review error:", error);
     res.status(500).json({ message: error.message });
   }
 };
