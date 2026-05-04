@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../../services/api";
 import "./ProductCard.css";
 
-
 function ProductCard({ product }) {
-  const BASE_URL = "https://cartify-2wo9.onrender.com";
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -15,14 +13,12 @@ function ProductCard({ product }) {
 
   const token = JSON.parse(localStorage.getItem("userInfo"))?.token;
 
-  // 👉 Open product details
   const openProduct = () => {
     navigate(`/product/${product._id}`);
   };
 
-  // 👉 Add to cart + redirect
   const handleAddToCart = async (e) => {
-    e.stopPropagation(); // prevent card click
+    e.stopPropagation();
 
     if (product.stock === 0) return;
 
@@ -42,9 +38,7 @@ function ProductCard({ product }) {
         }
       );
 
-      // ✅ Redirect to cart page
       navigate("/cart");
-
     } catch (error) {
       console.error("Add to cart error:", error);
     } finally {
@@ -54,12 +48,11 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card" onClick={openProduct}>
-
       <div className="product-img">
         <img
           src={
             product.images?.length
-              ? `${BASE_URL}${product.images[0]}`
+              ? product.images[0]
               : "https://via.placeholder.com/300"
           }
           alt={product.name}
@@ -67,7 +60,6 @@ function ProductCard({ product }) {
       </div>
 
       <div className="product-details">
-
         <span className="category">{product.category}</span>
 
         <h3 className="product-name">{product.name}</h3>
@@ -95,7 +87,6 @@ function ProductCard({ product }) {
         </p>
 
         <div className="bottom">
-
           <span className="price">₹{product.price}</span>
 
           <button
@@ -106,9 +97,7 @@ function ProductCard({ product }) {
             <FaShoppingCart />
             {loading ? "Adding..." : "Add"}
           </button>
-
         </div>
-
       </div>
     </div>
   );
