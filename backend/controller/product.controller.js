@@ -4,10 +4,7 @@ import Product from "../models/product.model.js";
 export const addProduct = async (req, res) => {
   try {
 
-    // Get uploaded image paths
-    const imagePaths = req.files.map(
-      (file) => `/uploads/${file.filename}`
-    );
+    const imagePaths = (req.files || []).map((file) => file.path);
 
     const product = await Product.create({
       ...req.body,
@@ -94,14 +91,18 @@ export const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // If new images uploaded
-    let imagePaths = product.images;
+    let existingImages = product.images;
 
-    if (req.files && req.files.length > 0) {
-      imagePaths = req.files.map(
-        (file) => `/uploads/${file.filename}`
-      );
+    if (req.body.existingImages) {
+      try {
+        existingImages = JSON.parse(req.body.existingImages);
+      } catch (error) {
+        return res.status(400).json({ message: "Invalid existingImages data" });
+      }
     }
+
+    const newImagePaths = (req.files || []).map((file) => file.path);
+    const imagePaths = [...existingImages, ...newImagePaths];
 
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./EditProduct.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getProductById } from "../services/api";
+import { getProductById, resolveImageUrl } from "../services/api";
 
 function EditProduct() {
 
@@ -172,7 +172,7 @@ function EditProduct() {
                 src={
                   img instanceof File
                     ? URL.createObjectURL(img)
-                    : `https://cartify-2wo9.onrender.com${img}`
+                    : resolveImageUrl(img)
                 }
                 alt="preview"
                 className="image-preview"

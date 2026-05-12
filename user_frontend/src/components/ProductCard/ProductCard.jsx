@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import API from "../../services/api";
+import API, { resolveImageUrl } from "../../services/api";
 import "./ProductCard.css";
 
 
 function ProductCard({ product }) {
-  const BASE_URL = "https://cartify-2wo9.onrender.com";
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -59,7 +58,7 @@ function ProductCard({ product }) {
         <img
           src={
             product.images?.length
-              ? `${BASE_URL}${product.images[0]}`
+              ? resolveImageUrl(product.images[0])
               : "https://via.placeholder.com/300"
           }
           alt={product.name}

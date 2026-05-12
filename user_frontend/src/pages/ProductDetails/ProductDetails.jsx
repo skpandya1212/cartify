@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
-import API from "../../services/api";
+import API, { resolveImageUrl } from "../../services/api";
 import "./ProductDetails.css";
 import StarRating from "../../components/Rating/StarRating";
 import RatingSummary from "../../components/RatingSummary/RatingSummary";
@@ -152,7 +152,7 @@ function ProductDetails() {
           <img
             src={
               product.images?.[activeImage]
-                ? `https://cartify-2wo9.onrender.com${product.images[activeImage]}`
+                ? resolveImageUrl(product.images[activeImage])
                 : "https://via.placeholder.com/500"
             }
             alt={product.name}
@@ -164,7 +164,7 @@ function ProductDetails() {
             {product.images?.map((img, index) => (
               <img
                 key={index}
-                src={`https://cartify-2wo9.onrender.com${img}`}
+                src={resolveImageUrl(img)}
                 alt="thumb"
                 className={`thumbnail ${index === activeImage ? "active" : ""}`}
                 onClick={() => setActiveImage(index)}

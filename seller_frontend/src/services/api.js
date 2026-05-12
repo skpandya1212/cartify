@@ -1,11 +1,19 @@
-    import axios from "axios";
+import axios from "axios";
+
+export const API_BASE_URL = "https://cartify-2wo9.onrender.com";
+
+export const resolveImageUrl = (imagePath) => {
+  if (!imagePath) return "";
+  if (/^https?:\/\//i.test(imagePath)) return imagePath;
+  return `${API_BASE_URL}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
+};
 
 // ==============================
 // Axios Instance
 // ==============================
 
 const API = axios.create({
-  baseURL: "https://cartify-2wo9.onrender.com/api",
+  baseURL: `${API_BASE_URL}/api`,
 });
 
 // ==============================

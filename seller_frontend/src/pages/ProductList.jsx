@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProductList.css";
-import { deleteProduct, getSellerProducts } from "../services/api";
+import { deleteProduct, getSellerProducts, resolveImageUrl } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function ProductsList() {
@@ -9,7 +9,6 @@ function ProductsList() {
   const [currentImageIndexes, setCurrentImageIndexes] = useState({});
   const [deleteId, setDeleteId] = useState(null);
   const navigate = useNavigate();
-  const BASE_URL = "https://cartify-2wo9.onrender.com";
 
   const fetchProducts = async () => {
     try {
@@ -146,7 +145,7 @@ function ProductsList() {
                     <img
                       src={
                         images[currentIndex]
-                          ? `${BASE_URL}/${images[currentIndex]}`
+                          ? resolveImageUrl(images[currentIndex])
                           : "https://via.placeholder.com/400x300?text=No+Image"
                       }
                       alt={product.name}

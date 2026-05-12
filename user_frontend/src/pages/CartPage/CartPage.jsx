@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./CartPage.css";
 import { useNavigate } from "react-router-dom";
+import { resolveImageUrl } from "../../services/api";
 
 function CartPage() {
   const navigate = useNavigate();
@@ -114,7 +115,7 @@ function CartPage() {
                   <img
                     src={
                       product.images?.[0]
-                        ? `https://cartify-2wo9.onrender.com${product.images[0]}`
+                        ? resolveImageUrl(product.images[0])
                         : "/placeholder.png"
                     }
                     alt={product.name}
