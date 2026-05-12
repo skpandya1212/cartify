@@ -85,7 +85,7 @@ app.use((req, res) => {
 // ✅ Error Handler
 app.use((err, req, res, next) => {
   console.error(err.message);
-  res.status(500).json({
+  res.status(err.status || err.statusCode || 500).json({
     message: err.message || "Server Error",
   });
 });

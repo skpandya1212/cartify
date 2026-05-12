@@ -93,7 +93,9 @@ function AddProduct() {
 
     } catch (error) {
       console.error(error);
-      setMessage("❌ Failed to add product");
+      setMessage(
+        error.response?.data?.message || "Failed to add product"
+      );
     } finally {
       setLoading(false);
     }

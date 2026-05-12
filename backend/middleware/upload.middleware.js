@@ -2,6 +2,11 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "../config/cloudinary.js";
 
+const hasCloudinaryConfig =
+  process.env.CLOUDINARY_CLOUD_NAME &&
+  process.env.CLOUDINARY_API_KEY &&
+  process.env.CLOUDINARY_API_SECRET;
+
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
@@ -27,4 +32,22 @@ const upload = multer({
   },
 });
 
-export default upload;
+const requireCloudinaryConfig = (req, res, next) => {
+  if (!hasCloudinaryConfig) {
+    return res.status(503).json({
+      message:
+        "Cloudinary is not configured. Add CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET to backend environment variables.",
+    });
+  }
+
+  next();
+};
+
+const guardedUpload = {
+  array: (fieldName, maxCount) => [
+    requireCloudinaryConfig,
+    upload.array(fieldName, maxCount),
+  ],
+};
+
+export default guardedUpload;
